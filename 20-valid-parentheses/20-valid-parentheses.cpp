@@ -1,5 +1,49 @@
 class Solution {
 public:
+    
+    //With stack
+    bool isValid(string s) {
+        
+        int n=s.size();
+        
+        //If length is odd, ans is false
+        if(n%2!=0)
+            return false;
+        
+        bool ans = true;
+        stack<char> seq;
+        
+        for(int i=0; i<n; i++){
+            //If open bracket, add in list
+            if(s[i]=='(' || s[i]=='[' || s[i]=='{'){
+                seq.push(s[i]);
+            }
+            //If closed bracket
+            else{
+                //If no opened bracket or last opened is 
+                //not same as current closing, ans is false
+                if(seq.empty() || !((seq.top()=='(' && s[i]==')')||
+                    (seq.top()=='[' && s[i]==']')|| (seq.top()=='{' && s[i]=='}')) ){
+                    ans=false;
+                    break;
+                }
+                //If last opened matches current closing bracket, remove one opened
+                else{
+                    seq.pop();
+                }
+            }
+        }
+        
+        //If some opened brackets remain
+        if(!seq.empty()){
+            ans=false;
+        }
+        
+        return ans;
+    }
+    
+    /*
+    //With vector
     bool isValid(string s) {
         
         int j = 0, n=s.size();
@@ -44,6 +88,7 @@ public:
         
         return ans;
     }
+    */
     
     /*
     //Only for number of brackets not order
