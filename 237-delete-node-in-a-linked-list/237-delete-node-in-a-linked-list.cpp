@@ -18,10 +18,10 @@ public:
         */
         
         //Another solution
-        //*node = *(node->next);
+        *node = *(node->next);
 
         //What I wrote
-        node->val=node->next->val;
-        node->next=node->next->next;
+        //node->val=node->next->val;
+        //node->next=node->next->next;
     }
 };
