@@ -2,7 +2,7 @@ class Solution {
 public:
     
     //My recursion function
-    void findSubsets(int i, vector<int> valsf ,vector<int> &nums, vector<vector<int>> &ans)
+    void findSubsets(int i, vector<int>& valsf ,vector<int> &nums, vector<vector<int>> &ans)
     {
         //base case, if all traversed, add answer and return
         if(i<0)
@@ -17,6 +17,8 @@ public:
         valsf.push_back(nums[i]);
         //find subsets after adding current element
         findSubsets(i-1, valsf, nums, ans);
+        //remove current element
+        valsf.pop_back();
     }
     
     //Given
