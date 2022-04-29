@@ -1,5 +1,8 @@
 class Solution {
 public:
+
+    /*
+    //Visited array O(n) space
     
     void permutation_util(vector<int>& nums, vector<bool>& visited, vector<int>& valsf ,vector<vector<int>> &ans){
         
@@ -27,16 +30,43 @@ public:
                 valsf.pop_back();
             }
         }
+    }*/
+    
+    //Space optimized
+    void permutation_util(vector<int>& nums, vector<vector<int>> &ans, int start){
+        
+        int n=nums.size();
+        
+        //Base case, if length of permutation reached, add, return
+        if(start==n){
+            ans.push_back(nums);
+            return;
+        }
+        
+        //Traverse array for rest of the values
+        for(int i=start; i<n; i++){
+            
+            //Swap to visited side to consider rest permutation starting with it
+            swap(nums[start], nums[i]);
+            //Recursion
+            permutation_util(nums, ans, start+1);
+            //Swap back to restore
+            swap(nums[start], nums[i]);
+        }
     }
     
     vector<vector<int>> permute(vector<int>& nums) {
         
         vector<vector<int>> ans;
-        vector<int> valsf;
+        //vector<int> valsf;
         //Array to keep track of included elements
-        vector<bool> visited(nums.size(),false);
+        //vector<bool> visited(nums.size(),false);
         
-        permutation_util(nums, visited, valsf ,ans);
+        //Extra space solution
+        //permutation_util(nums, visited, valsf ,ans);
+        
+        //Const space
+        permutation_util(nums, ans, 0);
         return ans;
     }
 };
