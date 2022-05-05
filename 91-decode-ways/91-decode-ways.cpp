@@ -43,6 +43,7 @@ public:
         }
     }*/
     
+    /*
     //Memoization
     int numDecodeRecur2(int ind, string &s, vector<int> &dp){
         
@@ -71,6 +72,7 @@ public:
         }
     }
     
+    //Given
     int numDecodings(string s) {
         
         int ans=0;
@@ -80,6 +82,21 @@ public:
         //numDecodeRecur(0, s, ans);
         //ans = numDecodeRecur2(0, s);
         return ans;
+    }
+    
+    */
+
+    
+    //DP, copied
+    int numDecodings(string s) {
+        int p = 1, pp, n = s.size();
+        for(int i=n-1;i>=0;i--) {
+            int cur = s[i]=='0' ? 0 : p;
+            if(i<n-1 && (s[i]=='1'||s[i]=='2'&&s[i+1]<'7')) cur+=pp;
+            pp = p;
+            p = cur;
+        }
+        return s.empty()? 0 : p;   
     }
 };
 
