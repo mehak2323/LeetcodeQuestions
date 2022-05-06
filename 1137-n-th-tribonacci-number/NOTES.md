@@ -1,0 +1,1 @@
+some matrix exponentiation method for log n time: https://leetcode.com/problems/n-th-tribonacci-number/discuss/1482728/C%2B%2BPython-2-solutions%3A-DP-Matrix-exponential-Picture-explained-Clean-and-Concise
