@@ -12,6 +12,34 @@
 class Solution {
 public:
     
+    
+    //Fuction to find max depth and update bool if depth difference more than 1, O(n)
+    int find_height(TreeNode* root, bool &ans){
+        
+        if(root==nullptr) return 0;
+        
+        int lh = find_height(root->left,ans);
+        int rh = find_height(root->right,ans);
+        
+        //Condition check to mark false, rest func same
+        if(abs(lh-rh)>1) ans = false;
+        
+        return 1+max(lh,rh);
+    }
+    
+    //Given function
+    bool isBalanced(TreeNode* root) {
+        
+        bool ans = true;
+        
+        //Recursion and update ans if false
+        int temp = find_height(root, ans);
+        
+        return ans;
+    }
+    
+    /* O(n^2 solution)
+    
     //To find depth/height, O(n)
     int find_height(TreeNode* root){
         if(root==nullptr) return 0;
@@ -38,4 +66,5 @@ public:
         
         return false;
     }
+    */
 };
