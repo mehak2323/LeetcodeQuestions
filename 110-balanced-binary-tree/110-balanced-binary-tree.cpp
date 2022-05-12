@@ -12,12 +12,13 @@
 class Solution {
 public:
     
-    
-    //Fuction to find max depth and update bool if depth difference more than 1, O(n)
+   //Fuction to find max depth and update bool if depth difference more than 1, O(n)
     int find_height(TreeNode* root, bool &ans){
         
-        if(root==nullptr) return 0;
+        //Base case, reached end or tree is determined unbalanced
+        if(root==nullptr || ans==false) return 0;
         
+        //Find heights of left and right subtree
         int lh = find_height(root->left,ans);
         int rh = find_height(root->right,ans);
         
