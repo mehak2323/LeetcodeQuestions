@@ -10,38 +10,27 @@
  * };
  */
 class Solution {
-public:
+private:
+    int ans=0;
     
-//     int diameterOfBinaryTree2(TreeNode* root) {
+    int diameterOfBinaryTreeRecur(TreeNode* root){
+        //Base case, 0 height
+        if(root == nullptr) return 0;
         
-//         if(root==nullptr) return 0;
+        //Find max left and right subtree heights 
+        int lh = diameterOfBinaryTreeRecur(root->left);
+        int rh = diameterOfBinaryTreeRecur(root->right);
         
-//         int lh = diameterOfBinaryTree2(root->left);
-//         int rh = diameterOfBinaryTree2(root->right);
+        //If bigger diameter found, adding left and right height/edges, update
+        ans = max(ans, lh+rh);
         
-//         return max(1+max(lh,rh),1+lh+rh);
-//     }
-    
-    int diameterOfBinaryTreeRecur(TreeNode* root, int &ans) {
-        
-        if(root==nullptr) return 0;
-        
-        int lh = diameterOfBinaryTreeRecur(root->left,ans);
-        int rh = diameterOfBinaryTreeRecur(root->right,ans);
-        
-        int curr_max = lh+rh;
-        
-        if(ans<curr_max)
-            ans=curr_max;
-            
-        return 1+max(lh,rh);
+        //Return max height for current node
+        return 1+max(lh,rh); 
     }
     
-    int diameterOfBinaryTree(TreeNode* root) {
-        
-        int ans=0;
-        int temp = diameterOfBinaryTreeRecur(root, ans);
+public:
+    int diameterOfBinaryTree(TreeNode* root) { 
+        diameterOfBinaryTreeRecur(root);
         return ans;
     }
-    
 };
